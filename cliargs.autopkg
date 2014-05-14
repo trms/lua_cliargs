@@ -2,7 +2,7 @@ nuget {
 	nuspec {
 		id = cliargs;
 		title: cliargs;
-		version: 2.1.2.4;
+		version: 2.1.2.5;
 		authors: {coapp, Ahmad Amireh, Christian Bechette, Tightrope Media Systems};
 		owners: {Ahmad Amireh};
 
@@ -28,7 +28,7 @@ nuget {
 		// declare a lua collection
 		lua : {
 			// copies the whole folder tree.
-			#add-all-files : Items.LuaLibraryFiles;
+			#add-all-files : Items.cliargsDir;
 			// set the destination in the package itself. 
 			#destination : ${build_root}\cliargs;
 		};
@@ -45,7 +45,7 @@ nuget {
 		AfterBuild {
 			.Copy {
 				DestinationFolder = "$(TargetDir)cliargs";
-				SourceFiles = "@(LuaLibraryFiles)";
+				SourceFiles = "@(cliargsDir)";
 				SkipUnchangedFiles = true;
 			};
 		};
