@@ -1,0 +1,53 @@
+nuget {
+	nuspec {
+		id = cliargs;
+		title: cliargs;
+		version: 2.1.2.4;
+		authors: {coapp, Ahmad Amireh, Christian Bechette, Tightrope Media Systems};
+		owners: {Ahmad Amireh};
+
+		licenseUrl: "http://opensource.org/licenses/MIT";
+		projectUrl: "https://github.com/amireh/lua_cliargs";
+		copyright: "Copyright (c) 2011-2012 Ahmad Amireh.";
+		
+		requireLicenseAcceptance: false;
+		summary: "cliargs is a command-line argument parser for Lua.";
+		releaseNotes: @"If you come across a bug and you'd like to patch it, please fork the repository, commit your patch, and request a pull."; 
+		description: @"cliargs is a command-line argument parser for Lua.";
+		tags: {native, Lua, module};
+	}
+	dependencies {
+        // This node defines any outside items which may be needed to consume this package.
+        packages : {
+            // This is a list of other NuGet packages required to use this package.
+            // Each item follows the format "<pkg_name>/<version>"
+            lua/"[5.1, 5.4)",
+        };
+    }
+	files {
+		// declare a lua collection
+		lua : {
+			// copies the whole folder tree.
+			#add-all-files : Items.LuaLibraryFiles;
+			// set the destination in the package itself. 
+			#destination : ${build_root}\cliargs;
+		};
+		docs : {
+			#destination = "${d_docs}\cliargs";
+			"doc\**\*"
+		};
+		docs += {"README.md"};
+		
+		lua: {"src\*"};
+    }
+
+    targets {
+		AfterBuild {
+			.Copy {
+				DestinationFolder = "$(TargetDir)cliargs";
+				SourceFiles = "@(LuaLibraryFiles)";
+				SkipUnchangedFiles = true;
+			};
+		};
+	}
+}
