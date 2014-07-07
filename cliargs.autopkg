@@ -2,7 +2,7 @@ nuget {
 	nuspec {
 		id = cliargs;
 		title: cliargs;
-		version: 2.1.2.5;
+		version: 2.1.2.6;
 		authors: {coapp, Ahmad Amireh, Christian Bechette, Tightrope Media Systems};
 		owners: {Ahmad Amireh};
 
@@ -21,7 +21,7 @@ nuget {
         packages : {
             // This is a list of other NuGet packages required to use this package.
             // Each item follows the format "<pkg_name>/<version>"
-            lua/"[5.1, 5.4)",
+            lua/"[5.3.0003.02, 5.4)",
         };
     }
 	files {
