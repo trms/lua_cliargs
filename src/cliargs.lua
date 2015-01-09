@@ -340,7 +340,9 @@ function cli:parse(noprint, dump)
           end
         else
           if not optval then
-            return cli_error("option --" .. optkey .. " requires a value to be set", noprint)
+            -- value is in the next argument
+            optval = args[1]
+            table.remove(args, 1)
           end
         end
       else
@@ -555,10 +557,10 @@ end
 
 
 -- finalize setup
-cli._COPYRIGHT   = "Copyright (C) 2011-2012 Ahmad Amireh"
+cli._COPYRIGHT   = "Copyright (C) 2011-2014 Ahmad Amireh"
 cli._LICENSE     = "The code is released under the MIT terms. Feel free to use it in both open and closed software as you please."
 cli._DESCRIPTION = "Commandline argument parser for Lua"
-cli._VERSION     = "cliargs 2.0-1"
+cli._VERSION     = "cliargs 2.2-0"
 
 -- aliases
 cli.add_argument = cli.add_arg
